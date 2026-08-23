@@ -156,7 +156,10 @@
     <footer>호기심을 품고, 즐겁게 탐구해요 ✦</footer>
   </main>
   <script>
-    const adminMode = sessionStorage.getItem('portfolioAdmin') === 'true';
+    const supabaseUrl = 'https://mdeqsecfgzmtweezomkp.supabase.co';
+    const supabaseKey = 'sb_publishable_UP6xIQ4b34VdDp255k4pdA_Ph9WVJiD';
+    const adminToken = sessionStorage.getItem('portfolioAdminToken');
+    const adminMode = Boolean(adminToken);
     if (adminMode) document.body.classList.add('admin-mode');
     else document.querySelectorAll('[contenteditable="true"]').forEach((element) => element.removeAttribute('contenteditable'));
     document.querySelectorAll('.accordion-trigger').forEach((button) => {
@@ -264,18 +267,31 @@
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     setTimeout(() => location.reload(), tomorrow - today + 1000);
     const works = document.querySelector('#works');
+    const disableEditing = () => document.querySelectorAll('[contenteditable="true"]').forEach((element) => element.removeAttribute('contenteditable'));
+    const cloudHeaders = (write = false) => ({ apikey: supabaseKey, ...(write ? { Authorization: `Bearer ${adminToken}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' } : {}) });
+    const restoreCloud = async () => {
+      try {
+        const response = await fetch(`${supabaseUrl}/rest/v1/portfolio_state?id=eq.main&select=data`, { headers: cloudHeaders() });
+        const [row] = await response.json(); const data = row?.data;
+        if (data?.works) works.innerHTML = data.works;
+        if (data?.timetable) data.timetable.forEach((text, index) => { if (timetableCells[index]) timetableCells[index].textContent = text; });
+        if (!adminMode) disableEditing();
+      } catch { /* 네트워크 연결이 없을 때는 기본 화면을 표시합니다. */ }
+    };
+    restoreCloud();
     const portfolioDraftKey = 'science-high-school-portfolio-draft';
     if (adminMode) {
       try {
         const draft = JSON.parse(localStorage.getItem(portfolioDraftKey));
         if (draft?.works) works.innerHTML = draft.works;
       } catch { /* 저장된 초안이 없거나 읽을 수 없습니다. */ }
-      document.querySelector('#savePortfolio').addEventListener('click', () => {
-        localStorage.setItem(portfolioDraftKey, JSON.stringify({ works: works.innerHTML }));
-        document.querySelector('#saveStatus').textContent = '저장했습니다. 이 브라우저에서 관리자 페이지를 다시 열어도 유지됩니다.';
+      document.querySelector('#savePortfolio').addEventListener('click', async () => {
+        const data = { works: works.innerHTML, timetable: timetableCells.map((cell) => cell.textContent.trim()) };
+        const response = await fetch(`${supabaseUrl}/rest/v1/portfolio_state?id=eq.main`, { method: 'PATCH', headers: cloudHeaders(true), body: JSON.stringify({ data, updated_at: new Date().toISOString() }) });
+        document.querySelector('#saveStatus').textContent = response.ok ? '저장했습니다. 공개 홈페이지에 반영됩니다.' : '저장에 실패했습니다. 다시 로그인해 주세요.';
       });
       document.querySelector('#exitAdmin').addEventListener('click', () => {
-        sessionStorage.removeItem('portfolioAdmin');
+        sessionStorage.removeItem('portfolioAdminToken');
         location.reload();
       });
     }
