@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>포트폴리오 관리자</title>
+  <style>
+    body{display:grid;min-height:100vh;margin:0;place-items:center;background:#fff0f4;color:#553d46;font-family:system-ui,sans-serif}.card{width:min(360px,calc(100% - 48px));padding:32px;border-radius:24px;background:#fffafb;box-shadow:0 10px 28px #d2708e25;text-align:center}h1{margin:0 0 10px;color:#d86586}p{font-size:.9rem;line-height:1.7}input,button{width:100%;box-sizing:border-box;padding:12px;border-radius:12px;font:inherit}input{border:1px solid #efb8c7;margin:12px 0}button{border:0;background:#e97695;color:#fff;cursor:pointer}.error{min-height:1.4em;margin:10px 0 0;color:#c54b68;font-size:.8rem}
+  </style>
+</head>
+<body>
+  <main class="card"><h1>관리자 페이지</h1><p>수정 화면으로 들어가려면 비밀번호를 입력하세요.</p><form id="login"><input id="password" type="password" inputmode="numeric" placeholder="비밀번호" required autofocus><button type="submit">수정 화면 열기</button><p class="error" id="error"></p></form></main>
+  <script>
+    document.querySelector('#login').addEventListener('submit',(event)=>{event.preventDefault();if(document.querySelector('#password').value==='0105'){sessionStorage.setItem('portfolioAdmin','true');location.replace('../');}else document.querySelector('#error').textContent='비밀번호가 맞지 않습니다.';});
+  </script>
+</body>
+</html>
+
