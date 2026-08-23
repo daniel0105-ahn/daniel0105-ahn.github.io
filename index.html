@@ -78,6 +78,7 @@
     .accordion-panel { padding: 28px; }
     .accordion-panel .section-heading { padding-top: 0; }
     .accordion.quiz, .accordion.timetable, .accordion.pledge { margin: 0 0 18px; padding: 0; background: var(--card); box-shadow: 0 9px 24px rgba(210, 112, 142, .07); }
+    body:not(.admin-mode) .admin-control { display: none; }
     footer { padding: 54px 0 10px; text-align: center; color: #b77285; font-size: .8rem; }
     @media (max-width: 640px) { main { padding: 50px 18px; } .grid { grid-template-columns: 1fr; } article { min-height: 0; } }
   </style>
@@ -94,10 +95,10 @@
       <div class="accordion-panel" hidden>
       <div class="section-heading"><span>MY WORKS</span><h2>내 작품</h2><p>내가 만든 프로젝트와 탐구 결과를 자유롭게 기록해요.</p></div>
       <div class="grid works" id="works">
-        <article class="work-card"><span class="num">WORK 01</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
-        <article class="work-card"><span class="num">WORK 02</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
+        <article class="work-card"><span class="num">WORK 01</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image admin-control">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload admin-control">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
+        <article class="work-card"><span class="num">WORK 02</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image admin-control">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload admin-control">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
       </div>
-      <button class="add-work" id="addWork" type="button">+ 작품 칸 추가하기</button>
+      <button class="add-work admin-control" id="addWork" type="button">+ 작품 칸 추가하기</button>
       </div>
     </section>
     <section class="accordion pledge" aria-label="앞으로의 다짐">
@@ -145,12 +146,15 @@
           </tbody>
         </table>
       </div>
-      <button class="reset-table" id="resetTable" type="button">시간표 비우기</button>
+      <button class="reset-table admin-control" id="resetTable" type="button">시간표 비우기</button>
       </div>
     </section>
     <footer>호기심을 품고, 즐겁게 탐구해요 ✦</footer>
   </main>
   <script>
+    const adminMode = sessionStorage.getItem('portfolioAdmin') === 'true';
+    if (adminMode) document.body.classList.add('admin-mode');
+    else document.querySelectorAll('[contenteditable="true"]').forEach((element) => element.removeAttribute('contenteditable'));
     document.querySelectorAll('.accordion-trigger').forEach((button) => {
       button.addEventListener('click', () => {
         const selectedPanel = button.nextElementSibling;
@@ -311,3 +315,4 @@
   </script>
 </body>
 </html>
+
