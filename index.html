@@ -79,6 +79,9 @@
     .accordion-panel .section-heading { padding-top: 0; }
     .accordion.quiz, .accordion.timetable, .accordion.pledge { margin: 0 0 18px; padding: 0; background: var(--card); box-shadow: 0 9px 24px rgba(210, 112, 142, .07); }
     body:not(.admin-mode) .admin-control { display: none; }
+    .admin-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: -24px 0 38px; padding: 14px 16px; border-radius: 16px; background: #ffe0e8; color: #965166; font-size: .8rem; }
+    .admin-toolbar button { padding: 8px 12px; border: 0; border-radius: 10px; background: #d86586; color: white; cursor: pointer; font-family: inherit; }
+    #saveStatus { flex-basis: 100%; color: #9b5b6c; font-size: .75rem; }
     footer { padding: 54px 0 10px; text-align: center; color: #b77285; font-size: .8rem; }
     @media (max-width: 640px) { main { padding: 50px 18px; } .grid { grid-template-columns: 1fr; } article { min-height: 0; } }
   </style>
@@ -90,6 +93,7 @@
       <h1>나의 과학고<br>포트폴리오</h1>
       <p class="intro">과학을 깊이 탐구하며 나만의 가능성을 넓혀 갈 시간입니다.<br>입학 전부터 차근차근 준비해 보세요.</p>
     </section>
+    <div class="admin-toolbar admin-control"><strong>관리자 수정 모드</strong><button id="savePortfolio" type="button">저장하기</button><button id="exitAdmin" type="button">수정 종료</button><span id="saveStatus">수정한 뒤 저장하기를 눌러 주세요.</span></div>
     <section class="accordion" aria-label="내 작품">
       <button class="accordion-trigger" type="button" aria-expanded="false">내 작품</button>
       <div class="accordion-panel" hidden>
@@ -260,6 +264,21 @@
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     setTimeout(() => location.reload(), tomorrow - today + 1000);
     const works = document.querySelector('#works');
+    const portfolioDraftKey = 'science-high-school-portfolio-draft';
+    if (adminMode) {
+      try {
+        const draft = JSON.parse(localStorage.getItem(portfolioDraftKey));
+        if (draft?.works) works.innerHTML = draft.works;
+      } catch { /* 저장된 초안이 없거나 읽을 수 없습니다. */ }
+      document.querySelector('#savePortfolio').addEventListener('click', () => {
+        localStorage.setItem(portfolioDraftKey, JSON.stringify({ works: works.innerHTML }));
+        document.querySelector('#saveStatus').textContent = '저장했습니다. 이 브라우저에서 관리자 페이지를 다시 열어도 유지됩니다.';
+      });
+      document.querySelector('#exitAdmin').addEventListener('click', () => {
+        sessionStorage.removeItem('portfolioAdmin');
+        location.reload();
+      });
+    }
     const imagePlaceholder = (label) => {
       label.innerHTML = '그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden>';
     };
