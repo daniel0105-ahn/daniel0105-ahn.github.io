@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>과학고 입학 준비 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+  <style>
+    :root { --pink: #fff0f4; --deep-pink: #e97695; --text: #553d46; --card: #fffafb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--pink); color: var(--text); font-family: "Gowun Dodum", sans-serif; }
+    main { max-width: 980px; margin: auto; padding: 72px 24px; }
+    .hero { text-align: center; padding: 24px 16px 58px; }
+    .badge { display: inline-block; padding: 8px 16px; border-radius: 999px; background: #ffe0e8; color: #bc536f; font-size: .85rem; }
+    h1, h2 { font-family: "Jua", sans-serif; font-weight: 400; }
+    h1 { margin: 20px 0 14px; font-size: clamp(2.8rem, 8vw, 5.8rem); line-height: 1.12; color: var(--deep-pink); }
+    .intro { max-width: 560px; margin: auto; font-size: .95rem; line-height: 1.85; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    article { min-height: 215px; padding: 30px; border: 1px solid #f7d9e1; border-radius: 28px; background: var(--card); box-shadow: 0 9px 24px rgba(210, 112, 142, .09); }
+    .num { display: block; color: #e895a9; font-family: "Jua", sans-serif; font-size: 1.12rem; }
+    h2 { margin: 10px 0 12px; font-size: 1.7rem; color: #a94d68; }
+    p { margin: 0; font-size: .88rem; line-height: 1.85; }
+    .section-heading { padding: 8px 4px 22px; }
+    .section-heading span { color: #e895a9; font-family: "Jua", sans-serif; font-size: .95rem; }
+    .section-heading h2 { margin: 6px 0; font-size: 2rem; }
+    .section-heading p { color: #7d646c; }
+    .works { margin-bottom: 18px; }
+    .work-card { min-height: 0; border-style: dashed; background: rgba(255, 250, 251, .65); }
+    .work-image { position: relative; display: grid; place-items: center; min-height: 155px; margin: 18px 0; overflow: hidden; border: 2px dashed #edb7c6; border-radius: 18px; background: #fff3f6; color: #c77c92; cursor: pointer; font-size: .83rem; text-align: center; }
+    .work-image img { display: block; width: 100%; height: 190px; object-fit: cover; }
+    .file-upload { display: inline-block; margin: 2px 0 16px; padding: 9px 13px; border-radius: 12px; background: #ffe0e8; color: #a94d68; cursor: pointer; font-size: .8rem; }
+    .file-list { display: grid; gap: 6px; margin: 0 0 15px; padding: 0; list-style: none; }
+    .file-list li { display: flex; gap: 6px; }
+    .file-list a { flex: 1; display: block; overflow: hidden; padding: 8px 10px; border-radius: 10px; background: #fff0f4; color: #9e5369; font-size: .78rem; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
+    .remove-image, .remove-file { border: 0; border-radius: 10px; background: #ed8ca4; color: white; cursor: pointer; font-family: inherit; }
+    .remove-image { position: absolute; top: 9px; right: 9px; z-index: 1; padding: 6px 10px; }
+    .remove-file { padding: 0 9px; }
+    .work-card [contenteditable="true"] { outline: none; }
+    .work-card h2[contenteditable="true"]:focus, .work-card p[contenteditable="true"]:focus { border-radius: 7px; background: #fff0f4; }
+    .add-work { display: block; width: 100%; margin-bottom: 58px; padding: 15px; border: 2px dashed #e895a9; border-radius: 18px; background: transparent; color: #bd5974; font-family: "Jua", sans-serif; font-size: 1.05rem; cursor: pointer; }
+    .add-work:hover { background: #ffe5ec; }
+    .pledge { padding-top: 8px; }
+    .quiz { margin: 6px 0 58px; padding: 32px; border-radius: 28px; background: #fffafb; box-shadow: 0 9px 24px rgba(210, 112, 142, .09); }
+    .quiz-date { margin-bottom: 22px; color: #be667e; font-size: .82rem; }
+    .quiz-list { display: grid; gap: 16px; }
+    .question { padding: 19px; border-radius: 18px; background: #fff3f6; }
+    .question h3 { margin: 0 0 12px; font-family: "Jua", sans-serif; font-size: 1.18rem; font-weight: 400; color: #874156; }
+    .choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .choice { padding: 9px; border: 1px solid #f2c6d1; border-radius: 10px; background: white; color: #634953; cursor: pointer; font-family: inherit; font-size: .8rem; }
+    .choice:hover { background: #ffe2ea; }
+    .choice.correct { border-color: #77b899; background: #e2f5e9; color: #397651; }
+    .choice.wrong { border-color: #e68c99; background: #ffe3e6; color: #ad495b; }
+    .explanation { display: none; margin-top: 11px; color: #765863; font-size: .78rem; line-height: 1.7; }
+    .explanation.show { display: block; }
+    .score { margin: 22px 0 0; color: #b04f6b; font-family: "Jua", sans-serif; font-size: 1.1rem; }
+    .wrong-note { margin-top: 26px; padding: 22px; border-radius: 18px; background: #fff0f4; }
+    .wrong-note h3 { margin: 0 0 8px; color: #a94d68; font-family: "Jua", sans-serif; font-size: 1.35rem; font-weight: 400; }
+    .wrong-note > p { color: #82636d; font-size: .8rem; }
+    .wrong-list { display: grid; gap: 10px; margin: 15px 0 0; padding: 0; list-style: none; }
+    .wrong-list li { padding: 13px; border-radius: 12px; background: white; color: #634953; font-size: .8rem; line-height: 1.75; }
+    .wrong-list strong { color: #ae506a; }
+    .timetable { margin: 6px 0 58px; }
+    .table-wrap { overflow-x: auto; border: 1px solid #f4cbd6; border-radius: 22px; background: #fffafb; box-shadow: 0 9px 24px rgba(210, 112, 142, .09); }
+    table { width: 100%; min-width: 650px; border-collapse: collapse; text-align: center; }
+    th { padding: 15px 10px; background: #ffe0e8; color: #a94d68; font-family: "Jua", sans-serif; font-weight: 400; }
+    td { min-width: 110px; height: 56px; padding: 9px; border-top: 1px solid #f8dce3; color: #604952; font-size: .82rem; }
+    td:first-child { background: #fff5f7; color: #b7647d; font-family: "Jua", sans-serif; }
+    td[contenteditable="true"] { cursor: text; }
+    td[contenteditable="true"]:focus { outline: 2px solid #ea9ab0; outline-offset: -2px; background: #fff0f4; }
+    .reset-table { margin-top: 12px; padding: 8px 12px; border: 0; border-radius: 10px; background: #f3b0c0; color: white; cursor: pointer; font-family: inherit; font-size: .78rem; }
+    .accordion { margin: 0 0 18px; overflow: hidden; border: 1px solid #f4cbd6; border-radius: 24px; background: var(--card); box-shadow: 0 9px 24px rgba(210, 112, 142, .07); }
+    .accordion-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 22px 26px; border: 0; background: #fffafb; color: #a94d68; cursor: pointer; font-family: "Jua", sans-serif; font-size: 1.55rem; text-align: left; }
+    .accordion-trigger::after { content: '+'; font-family: "Gowun Dodum", sans-serif; font-size: 1.6rem; }
+    .accordion-trigger[aria-expanded="true"] { background: #ffe5ec; }
+    .accordion-trigger[aria-expanded="true"]::after { content: '−'; }
+    .accordion-panel { padding: 28px; }
+    .accordion-panel .section-heading { padding-top: 0; }
+    .accordion.quiz, .accordion.timetable, .accordion.pledge { margin: 0 0 18px; padding: 0; background: var(--card); box-shadow: 0 9px 24px rgba(210, 112, 142, .07); }
+    footer { padding: 54px 0 10px; text-align: center; color: #b77285; font-size: .8rem; }
+    @media (max-width: 640px) { main { padding: 50px 18px; } .grid { grid-template-columns: 1fr; } article { min-height: 0; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <span class="badge">SCIENCE HIGH SCHOOL START GUIDE</span>
+      <h1>나의 과학고<br>포트폴리오</h1>
+      <p class="intro">과학을 깊이 탐구하며 나만의 가능성을 넓혀 갈 시간입니다.<br>입학 전부터 차근차근 준비해 보세요.</p>
+    </section>
+    <section class="accordion" aria-label="내 작품">
+      <button class="accordion-trigger" type="button" aria-expanded="false">내 작품</button>
+      <div class="accordion-panel" hidden>
+      <div class="section-heading"><span>MY WORKS</span><h2>내 작품</h2><p>내가 만든 프로젝트와 탐구 결과를 자유롭게 기록해요.</p></div>
+      <div class="grid works" id="works">
+        <article class="work-card"><span class="num">WORK 01</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
+        <article class="work-card"><span class="num">WORK 02</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
+      </div>
+      <button class="add-work" id="addWork" type="button">+ 작품 칸 추가하기</button>
+      </div>
+    </section>
+    <section class="accordion pledge" aria-label="앞으로의 다짐">
+      <button class="accordion-trigger" type="button" aria-expanded="false">앞으로의 다짐</button>
+      <div class="accordion-panel" hidden>
+      <div class="section-heading"><span>MY PROMISE</span><h2>앞으로의 다짐</h2><p>과학고에서 배우고 실천하고 싶은 것들입니다.</p></div>
+      <div class="grid">
+      <article><span class="num">01</span><h2>기초 학습 다지기</h2><p>수학과 과학의 핵심 개념을 다시 정리해 보세요. 공식 암기보다 ‘왜 그런가’를 설명하는 연습이 앞으로의 탐구에 큰 힘이 됩니다.</p></article>
+      <article><span class="num">02</span><h2>관심 분야 찾기</h2><p>물리·화학·생명과학·지구과학 중 마음이 가는 주제를 골라 책, 영상, 실험으로 가볍게 만나 보세요. 정답보다 호기심이 출발점입니다.</p></article>
+      <article><span class="num">03</span><h2>탐구 기록 습관</h2><p>궁금한 점, 가설, 관찰 결과를 노트에 남겨 보세요. 작은 질문 하나도 훌륭한 연구의 씨앗이 될 수 있습니다.</p></article>
+      <article><span class="num">04</span><h2>함께 배우는 태도</h2><p>과학고에서는 친구와 의견을 나누고 협력하는 일이 많습니다. 내 생각을 분명히 말하고, 다른 관점도 열린 마음으로 들어 보세요.</p></article>
+      <article><span class="num">05</span><h2>생활 리듬 만들기</h2><p>새로운 환경에서도 꾸준히 배우려면 수면, 운동, 휴식의 균형이 필요합니다. 나에게 맞는 공부 루틴을 미리 찾아 두세요.</p></article>
+      <article><span class="num">06</span><h2>나만의 목표 세우기</h2><p>‘무엇을 잘하고 싶은지’, ‘어떤 문제를 해결하고 싶은지’를 한 문장으로 적어 보세요. 목표는 바뀌어도 괜찮습니다. 방향을 찾는 과정이 중요합니다.</p></article>
+      </div>
+      </div>
+    </section>
+    <section class="accordion quiz" aria-label="오늘의 퀴즈">
+      <button class="accordion-trigger" type="button" aria-expanded="false">오늘의 퀴즈</button>
+      <div class="accordion-panel" hidden>
+      <div class="section-heading"><span>DAILY QUIZ</span><h2>오늘의 퀴즈</h2><p>과학고 입학 준비에 도움이 되는 10문제예요. 답을 골라 바로 확인해 보세요.</p></div>
+      <p class="quiz-date" id="quizDate"></p>
+      <div class="quiz-list" id="quizList"></div>
+      <p class="score" id="score">정답: 0 / 10</p>
+      <aside class="wrong-note" aria-label="오답노트">
+        <h3>오답노트</h3>
+        <p>틀린 문제의 정답과 해설이 여기에 쌓여요.</p>
+        <ul class="wrong-list" id="wrongList"></ul>
+      </aside>
+      </div>
+    </section>
+    <section class="accordion timetable" aria-label="시간표">
+      <button class="accordion-trigger" type="button" aria-expanded="false">시간표</button>
+      <div class="accordion-panel" hidden>
+      <div class="section-heading"><span>MY TIMETABLE</span><h2>시간표</h2><p>수업 칸을 눌러 과목이나 활동을 직접 입력해 보세요.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>교시</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr></thead>
+          <tbody>
+            <tr><td>1교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
+            <tr><td>2교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
+            <tr><td>3교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
+            <tr><td>4교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
+            <tr><td>5교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
+            <tr><td>6교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="reset-table" id="resetTable" type="button">시간표 비우기</button>
+      </div>
+    </section>
+    <footer>호기심을 품고, 즐겁게 탐구해요 ✦</footer>
+  </main>
+  <script>
+    document.querySelectorAll('.accordion-trigger').forEach((button) => {
+      button.addEventListener('click', () => {
+        const selectedPanel = button.nextElementSibling;
+        const willOpen = button.getAttribute('aria-expanded') === 'false';
+        document.querySelectorAll('.accordion-trigger').forEach((otherButton) => {
+          otherButton.setAttribute('aria-expanded', 'false');
+          otherButton.nextElementSibling.hidden = true;
+        });
+        button.setAttribute('aria-expanded', String(willOpen));
+        selectedPanel.hidden = !willOpen;
+      });
+    });
+    const questions = [
+      ['속력이란 무엇을 뜻할까요?', ['물체가 이동한 거리 ÷ 걸린 시간', '물체의 무게', '물체가 차지하는 부피', '물체의 온도'], 0, '속력은 일정 시간 동안 이동한 거리를 말합니다.'],
+      ['밀도를 구하는 올바른 식은 무엇일까요?', ['질량 ÷ 부피', '부피 ÷ 질량', '질량 × 부피', '질량 + 부피'], 0, '밀도 = 질량 ÷ 부피입니다.'],
+      ['식물의 광합성에 꼭 필요한 기체는 무엇일까요?', ['이산화 탄소', '산소', '질소', '헬륨'], 0, '식물은 이산화 탄소와 물을 이용해 양분을 만듭니다.'],
+      ['힘의 SI 단위는 무엇일까요?', ['뉴턴(N)', '줄(J)', '와트(W)', '파스칼(Pa)'], 0, '힘의 단위는 뉴턴(N)입니다.'],
+      ['소리는 어떤 물질을 통해 전달될까요?', ['매질', '진공', '빛', '그림자'], 0, '소리는 공기·물·고체 같은 매질의 진동으로 전달됩니다.'],
+      ['원자에서 음전하를 띠는 입자는?', ['전자', '양성자', '중성자', '원자핵'], 0, '전자는 음전하, 양성자는 양전하를 띱니다.'],
+      ['pH가 7인 용액은 어떤 성질일까요?', ['중성', '산성', '염기성', '금속성'], 0, 'pH 7은 산성과 염기성의 중간인 중성입니다.'],
+      ['지구가 태양 주위를 도는 운동을 무엇이라고 할까요?', ['공전', '자전', '회전', '진동'], 0, '지구의 공전은 1년에 한 바퀴씩 태양 주위를 도는 운동입니다.'],
+      ['전기 회로에서 전류의 흐름을 방해하는 정도를 무엇이라고 할까요?', ['저항', '전압', '전력', '전하'], 0, '저항이 클수록 전류의 흐름은 어려워집니다.'],
+      ['물질이 고체에서 액체로 변하는 현상은?', ['융해', '응고', '기화', '승화'], 0, '고체가 열을 받아 액체가 되는 변화가 융해입니다.'],
+      ['유전 정보가 주로 들어 있는 세포의 구조는?', ['핵', '세포막', '세포벽', '액포'], 0, '진핵세포의 DNA는 주로 핵 안에 들어 있습니다.'],
+      ['빛이 서로 다른 물질의 경계에서 꺾이는 현상은?', ['굴절', '반사', '분산', '회절'], 0, '빛의 속력이 바뀌며 진행 방향이 달라지는 것이 굴절입니다.'],
+      ['태양계에서 가장 큰 행성은?', ['목성', '지구', '화성', '토성'], 0, '목성은 태양계에서 가장 큰 행성입니다.'],
+      ['가설을 검증하기 위해 한 가지 조건만 바꾸는 실험을 무엇이라 할까요?', ['변인 통제 실험', '관찰 실험', '우연 실험', '암기 실험'], 0, '다른 조건을 같게 해야 바꾼 조건의 영향을 알 수 있습니다.'],
+      ['염기성 용액에 붉은 리트머스 종이를 넣으면?', ['파란색으로 변한다', '빨간색으로 변한다', '색이 사라진다', '노란색으로 변한다'], 0, '붉은 리트머스는 염기성에서 파란색으로 변합니다.'],
+      ['마찰력은 물체의 운동 방향에 대해 어느 방향으로 작용할까요?', ['반대 방향', '같은 방향', '항상 위쪽', '항상 아래쪽'], 0, '마찰력은 접촉면에서 상대 운동을 방해하는 방향으로 작용합니다.'],
+      ['생태계에서 생산자에 해당하는 생물은?', ['식물', '사자', '버섯', '독수리'], 0, '식물은 광합성으로 스스로 양분을 만드는 생산자입니다.'],
+      ['별의 밝기를 비교할 때 가장 직접적으로 관찰할 수 있는 것은?', ['겉보기 밝기', '별의 나이', '별의 질량', '별의 내부 온도'], 0, '지구에서 관찰하는 밝기는 별까지의 거리에도 영향을 받습니다.'],
+      ['온도가 같은 두 물체가 열을 주고받지 않는 상태를?', ['열평형', '열전도', '증발', '대류'], 0, '두 물체의 온도가 같아 순열 이동이 없는 상태가 열평형입니다.'],
+      ['과학 탐구에서 결과가 예상과 달라도 중요한 이유는?', ['새로운 질문과 원인을 찾을 수 있어서', '실험을 멈춰야 해서', '기록할 필요가 없어서', '가설은 언제나 맞아서'], 0, '예상 밖의 결과는 오차 원인과 새로운 가설을 찾는 좋은 단서입니다.']
+    ];
+    const today = new Date();
+    const timetableCells = [...document.querySelectorAll('td[contenteditable="true"]')];
+    const timetableKey = 'science-high-school-timetable';
+    let savedTimetable = [];
+    try { savedTimetable = JSON.parse(localStorage.getItem(timetableKey)) || []; } catch { savedTimetable = []; }
+    if (savedTimetable.length === timetableCells.length) timetableCells.forEach((cell, index) => { cell.textContent = savedTimetable[index]; });
+    const saveTimetable = () => localStorage.setItem(timetableKey, JSON.stringify(timetableCells.map((cell) => cell.textContent.trim())));
+    timetableCells.forEach((cell) => cell.addEventListener('input', saveTimetable));
+    document.querySelector('#resetTable').addEventListener('click', () => {
+      timetableCells.forEach((cell) => { cell.textContent = ''; });
+      saveTimetable();
+    });
+    const dayKey = Math.floor(new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime() / 86400000);
+    const random = (() => { let seed = dayKey; return () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296); })();
+    const shuffle = (items) => [...items].sort(() => random() - .5);
+    const todayQuestions = shuffle(questions).slice(0, 10);
+    const quizList = document.querySelector('#quizList');
+    const wrongList = document.querySelector('#wrongList');
+    const wrongNoteKey = `science-quiz-wrong-notes-${dayKey}`;
+    let wrongAnswers = [];
+    try { wrongAnswers = JSON.parse(localStorage.getItem(wrongNoteKey)) || []; } catch { wrongAnswers = []; }
+    const renderWrongNotes = () => {
+      wrongList.replaceChildren();
+      if (!wrongAnswers.length) {
+        const item = document.createElement('li');
+        item.textContent = '아직 기록된 오답이 없어요. 천천히 문제를 풀어 보세요!';
+        wrongList.appendChild(item);
+        return;
+      }
+      wrongAnswers.forEach((wrong, index) => {
+        const item = document.createElement('li');
+        item.innerHTML = `<strong>${index + 1}. ${wrong.question}</strong><br>정답: ${wrong.answer}<br>해설: ${wrong.explanation}`;
+        wrongList.appendChild(item);
+      });
+    };
+    renderWrongNotes();
+    let score = 0;
+    document.querySelector('#quizDate').textContent = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일의 퀴즈`;
+    todayQuestions.forEach(([question, answers, correct, explanation], index) => {
+      const card = document.createElement('div');
+      card.className = 'question';
+      const title = document.createElement('h3');
+      title.textContent = `${index + 1}. ${question}`;
+      const choices = document.createElement('div');
+      choices.className = 'choices';
+      const note = document.createElement('p');
+      note.className = 'explanation';
+      note.textContent = `해설: ${explanation}`;
+      shuffle(answers.map((text, i) => ({ text, correct: i === correct }))).forEach((answer) => {
+        const button = document.createElement('button');
+        button.className = 'choice'; button.type = 'button'; button.textContent = answer.text;
+        button.addEventListener('click', () => {
+          if (card.dataset.answered) return;
+          card.dataset.answered = 'true';
+          [...choices.children].forEach((choice) => { choice.disabled = true; if (choice.textContent === answers[correct]) choice.classList.add('correct'); });
+          if (answer.correct) { score++; document.querySelector('#score').textContent = `정답: ${score} / 10`; }
+          else {
+            button.classList.add('wrong');
+            wrongAnswers.push({ question, answer: answers[correct], explanation });
+            localStorage.setItem(wrongNoteKey, JSON.stringify(wrongAnswers));
+            renderWrongNotes();
+          }
+          note.classList.add('show');
+        });
+        choices.appendChild(button);
+      });
+      card.append(title, choices, note); quizList.appendChild(card);
+    });
+    const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    setTimeout(() => location.reload(), tomorrow - today + 1000);
+    const works = document.querySelector('#works');
+    const imagePlaceholder = (label) => {
+      label.innerHTML = '그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden>';
+    };
+    const imageUpload = (input) => {
+      const file = input.files[0];
+      if (!file) return;
+      const image = document.createElement('img');
+      image.src = URL.createObjectURL(file);
+      image.alt = '업로드한 작품 이미지';
+      const remove = document.createElement('button');
+      remove.className = 'remove-image';
+      remove.type = 'button';
+      remove.textContent = '그림 삭제';
+      input.parentElement.replaceChildren(image, input, remove);
+    };
+    const addFiles = (input) => {
+      const list = input.closest('.work-card').querySelector('.file-list');
+      [...input.files].forEach((file) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(file);
+        link.download = file.name;
+        link.textContent = `첨부 파일: ${file.name}`;
+        link.title = file.name;
+        const remove = document.createElement('button');
+        remove.className = 'remove-file';
+        remove.type = 'button';
+        remove.textContent = '삭제';
+        item.append(link, remove);
+        list.appendChild(item);
+      });
+      input.value = '';
+    };
+    document.addEventListener('change', (event) => {
+      if (event.target.matches('.work-image input[type="file"]')) imageUpload(event.target);
+      if (event.target.matches('.project-file')) addFiles(event.target);
+    });
+    document.addEventListener('click', (event) => {
+      if (event.target.matches('.remove-image')) {
+        event.preventDefault();
+        imagePlaceholder(event.target.closest('.work-image'));
+      }
+      if (event.target.matches('.remove-file')) event.target.closest('li').remove();
+    });
+    document.querySelector('#addWork').addEventListener('click', () => {
+      const number = String(works.children.length + 1).padStart(2, '0');
+      const card = document.createElement('article');
+      card.className = 'work-card';
+      card.innerHTML = `<span class="num">WORK ${number}</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p>`;
+      works.appendChild(card);
+      card.querySelector('h2').focus();
+    });
+  </script>
+</body>
+</html>
