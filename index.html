@@ -17,6 +17,20 @@
     h1, h2 { font-family: "Jua", sans-serif; font-weight: 400; }
     h1 { margin: 20px 0 14px; font-size: clamp(2.8rem, 8vw, 5.8rem); line-height: 1.12; color: var(--deep-pink); }
     .intro { max-width: 560px; margin: auto; font-size: .95rem; line-height: 1.85; }
+    .admission-chat { margin: 0 0 54px; overflow: hidden; border: 1px solid #f3cbd7; border-radius: 28px; background: #fff; box-shadow: 0 12px 30px rgba(210, 112, 142, .12); text-align: left; }
+    .chat-head { display: flex; align-items: center; gap: 12px; padding: 18px 22px; border-bottom: 1px solid #f7d9e1; }
+    .chat-icon { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 13px; background: linear-gradient(135deg, #f5a2b6, #e66f92); font-size: 1.25rem; }
+    .chat-head h2 { margin: 0; font-size: 1.28rem; } .chat-head p { color: #9a7180; font-size: .74rem; }
+    .chat-timer { margin-left: auto; color: #a4667a; font-size: .75rem; } .chat-timer strong { color: #c35472; font-family: "Jua", sans-serif; font-size: 1rem; }
+    .chat-history { display: flex; flex-direction: column; gap: 12px; height: 290px; overflow-y: auto; padding: 20px; background: #fffdfd; }
+    .chat-bubble { max-width: 79%; padding: 13px 15px; border-radius: 17px; font-size: .84rem; line-height: 1.7; }
+    .chat-bot { align-self: flex-start; border: 1px solid #f5dce4; border-radius: 17px 17px 17px 5px; background: #fff3f6; }
+    .chat-user { align-self: flex-end; border-radius: 17px 17px 5px 17px; background: #c75e7d; color: #fff; }
+    .chat-source { display: block; margin-top: 7px; color: #a06e7e; font-size: .67rem; font-weight: bold; }
+    .chat-typing { display: flex; align-items: center; gap: 5px; min-height: 45px; } .chat-typing i { width: 6px; height: 6px; border-radius: 50%; background: #bc7e90; animation: chatWave 1s ease-in-out infinite; } .chat-typing i:nth-child(2) { animation-delay: .15s; } .chat-typing i:nth-child(3) { animation-delay: .3s; }
+    .chat-suggestions { padding: 14px 20px; border-top: 1px dashed #f0cbd6; } .chat-suggestions > p { margin-bottom: 9px; color: #9d697b; font-size: .76rem; font-weight: bold; }
+    .chat-chips { display: flex; flex-wrap: wrap; gap: 7px; } .chat-chip { border: 1px solid #efbfd0; border-radius: 999px; background: #fff8fa; color: #a74d69; padding: 8px 11px; cursor: pointer; font: inherit; font-size: .75rem; } .chat-chip:hover { background: #ffe7ee; }
+    .chat-form { display: flex; gap: 8px; padding: 13px 20px; border-top: 1px solid #f7d9e1; } .chat-form input { min-width: 0; flex: 1; border: 1px solid #f0cbd6; border-radius: 12px; padding: 11px 12px; color: var(--text); font: inherit; font-size: .8rem; } .chat-form button { border: 0; border-radius: 12px; background: #c75e7d; color: #fff; padding: 0 15px; cursor: pointer; font-family: inherit; font-weight: bold; }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
     article { min-height: 215px; padding: 30px; border: 1px solid #f7d9e1; border-radius: 28px; background: var(--card); box-shadow: 0 9px 24px rgba(210, 112, 142, .09); }
     .num { display: block; color: #e895a9; font-family: "Jua", sans-serif; font-size: 1.12rem; }
@@ -83,6 +97,7 @@
     .admin-toolbar button { padding: 8px 12px; border: 0; border-radius: 10px; background: #d86586; color: white; cursor: pointer; font-family: inherit; }
     #saveStatus { flex-basis: 100%; color: #9b5b6c; font-size: .75rem; }
     footer { padding: 54px 0 10px; text-align: center; color: #b77285; font-size: .8rem; }
+    @keyframes chatWave { 0%, 60%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-6px); opacity: 1; } }
     @media (max-width: 640px) { main { padding: 50px 18px; } .grid { grid-template-columns: 1fr; } article { min-height: 0; } }
   </style>
 </head>
@@ -92,6 +107,12 @@
       <span class="badge">SCIENCE HIGH SCHOOL START GUIDE</span>
       <h1>나의 과학고<br>포트폴리오</h1>
       <p class="intro">과학을 깊이 탐구하며 나만의 가능성을 넓혀 갈 시간입니다.<br>입학 전부터 차근차근 준비해 보세요.</p>
+    </section>
+    <section class="admission-chat" aria-label="창원과학고 입학전형 챗봇">
+      <div class="chat-head"><span class="chat-icon">🎓</span><div><h2>창원과학고 입학 도우미</h2><p>2027학년도 입학전형 안내</p></div><span class="chat-timer">추천 질문 변경 <strong id="chatCount">5</strong>초</span></div>
+      <div class="chat-history" id="chatHistory"><div class="chat-bubble chat-bot">안녕하세요. 창원과학고 입학전형에 관해 궁금한 점을 물어보세요.<span class="chat-source">추천 질문을 누르면 바로 답변해 드립니다.</span></div></div>
+      <div class="chat-suggestions"><p>💡 이런 질문을 할 수 있어요</p><div class="chat-chips" id="chatChips"></div></div>
+      <form class="chat-form" id="chatForm"><input id="chatInput" placeholder="궁금한 것을 입력해 보세요" autocomplete="off"><button>보내기</button></form>
     </section>
     <div class="admin-toolbar admin-control"><strong>관리자 수정 모드</strong><button id="savePortfolio" type="button">저장하기</button><button id="exitAdmin" type="button">수정 종료</button><span id="saveStatus">수정한 뒤 저장하기를 눌러 주세요.</span></div>
     <section class="accordion" aria-label="내 작품">
@@ -156,6 +177,17 @@
     <footer>호기심을 품고, 즐겁게 탐구해요 ✦</footer>
   </main>
   <script>
+    const admissionFaq = [
+      ['창원과학고는 어떤 학교인가요?', '경남 창원시에 있는 공립 과학고로, 수학·과학 분야의 잠재력과 자기주도학습 역량을 갖춘 학생을 선발합니다.'], ['2027학년도 모집 인원은 몇 명인가요?', '정원 내 80명을 선발하며, 일반전형 64명과 사회통합전형 16명으로 구성됩니다.'], ['정원 외 선발도 있나요?', '교육지원 대상자와 특례입학전형 대상자를 각각 2명 이내로 선발할 수 있습니다.'], ['누가 지원할 수 있나요?', '중학교장의 추천을 받은 학생 중 모집요강의 지원 자격을 충족한 학생이 지원할 수 있습니다.'], ['경남 밖 중학교 학생도 지원할 수 있나요?', '전 가족의 경남 거주나 경남혁신도시 이전 기관 종사자 자녀 등 별도 자격에 해당하면 지원할 수 있습니다.'], ['원서 접수 마감일은 언제인가요?', '제공된 안내 자료 기준으로 2026년 8월 26일입니다. 정확한 접수 시간은 공식 공지를 다시 확인해야 합니다.'], ['서류 평가 결과는 언제 발표되나요?', '안내 자료 기준으로 9월 30일 오후 5시이며, 약 2.5배수 내외가 소집 면담 대상자로 선정됩니다.'], ['소집 면담은 언제 진행되나요?', '안내 자료 기준으로 10월 12일부터 10월 30일까지 진행됩니다.'], ['면접 대상자 발표와 면접일은 언제인가요?', '면접 대상자는 11월 13일 오후 5시에 발표되고, 소집 면접은 11월 23일에 진행됩니다.'], ['최종 합격자는 언제 발표되나요?', '안내 자료 기준으로 12월 1일 오후 5시입니다.'], ['전형은 몇 단계로 진행되나요?', '서류 평가, 소집 면담, 소집 면접의 세 단계로 진행되며 교과 성적을 함께 종합해 최종 선발합니다.'], ['1단계 서류 평가에서는 무엇을 보나요?', '학교생활기록부Ⅱ, 자기소개서, 교사 추천서를 바탕으로 수학·과학 역량, 탐구 잠재력, 자기주도성, 인성을 평가합니다.'], ['소집 면담은 시험인가요?', '교과 문제를 푸는 시험이 아니라 제출 서류의 사실 여부와 탐구 과정을 확인하는 단계입니다.'], ['소집 면접에서는 무엇을 평가하나요?', '수학·과학의 융합적 사고력, 창의적 문제 해결력, 탐구 역량과 배려·협력 등의 인성을 평가합니다.'], ['내신은 어떤 과목을 반영하나요?', '수학과 과학을 각각 50%씩 반영합니다.'], ['내신은 어느 학기를 반영하나요?', '1단계에서는 2학년 1학기 30%, 2학년 2학기 30%, 3학년 1학기 40%를 반영합니다.'], ['원점수나 표준편차도 반영되나요?', '아닙니다. 성취도와 수강자 수를 반영하며 원점수와 표준편차는 제외됩니다.'], ['자기소개서는 몇 문항인가요?', '총 4문항, 띄어쓰기 포함 3,000자 이내입니다. 지원 동기·진로, 수학 탐구, 과학 탐구, 인성 또는 독서 활동으로 구성됩니다.'], ['수학·과학 탐구 활동은 몇 가지를 작성하나요?', '수학 분야 2가지와 과학 분야 2가지를 작성하며, 각 활동은 500자 이내입니다.'], ['자기소개서는 누가 작성해야 하나요?', '지원 학생이 사실에 근거해 직접 작성해야 합니다.'], ['교사 추천서는 누가 작성하나요?', '중학교 수학 또는 과학 담당 교사 1인이 온라인으로 직접 작성하고 제출합니다.'], ['추천서에서는 무엇을 평가하나요?', '자기주도학습능력, 과제집착력, 문제해결력, 창의성, 탐구 잠재력과 의사소통·협력·배려 등의 인성을 평가합니다.'], ['대회 수상이나 올림피아드 경험을 적어도 되나요?', '안 됩니다. 교내외 경시대회와 올림피아드의 참가·수상 실적은 기재 금지 사항입니다.'], ['공인어학시험이나 영재교육원 이력은 작성해도 되나요?', '안 됩니다. 공인어학시험, 자격증, 영재교육원·영재학급 이력, 교과 성적·석차는 기재하면 안 됩니다.'], ['수상 없이 대회 참가 사실만 써도 되나요?', '권장되지 않습니다. 단순 참가 사실만 언급해도 감점 대상이 될 수 있습니다.'], ['부모 직업이나 특정 대학 이름을 써도 되나요?', '피해야 합니다. 부모·친인척의 직업과 경제적 지위, 특정 대학·기관·상호명 등은 감점 대상이 될 수 있습니다.'], ['논문·특허·해외 활동도 기재하면 안 되나요?', '논문, 특허, 해외 연수·봉사, 장학금 수령 관련 서술은 감점 대상입니다.'], ['의약학 계열 진학을 희망해도 되나요?', '창원과고는 순수 과학·수학 인재 양성을 목적으로 하며 의약학 계열 진학에는 제한 사항이 안내되어 있습니다.'], ['학교 시설에는 무엇이 있나요?', '수학실, 컴퓨터실, 과학 분야별 실험실, AI 스마트 도서관, 천체관측 시설 등이 마련되어 있습니다.'], ['어떤 동아리 활동을 할 수 있나요?', '수학·정보·화학·생명과학·물리·융합과학 학술 동아리와 로봇, 천체관측, 방송, 밴드 등 다양한 자율 동아리가 운영됩니다.']
+    ];
+    const chatHistory = document.querySelector('#chatHistory'); const chatChips = document.querySelector('#chatChips'); const chatCount = document.querySelector('#chatCount'); const chatInput = document.querySelector('#chatInput'); let chatSeconds = 5;
+    const pickChatQuestions = () => [...admissionFaq].sort(() => Math.random() - .5).slice(0, 5);
+    const renderChatChips = () => { chatChips.innerHTML = pickChatQuestions().map(([question]) => `<button class="chat-chip" type="button">${question}</button>`).join(''); chatSeconds = 5; chatCount.textContent = chatSeconds; };
+    const addChatBubble = (type, message, typing = false) => { const bubble = document.createElement('div'); bubble.className = `chat-bubble chat-${type}`; chatHistory.append(bubble); if (!typing) { bubble.textContent = message; chatHistory.scrollTop = chatHistory.scrollHeight; return; } let index = 0; const write = () => { bubble.textContent = message.slice(0, index++); chatHistory.scrollTop = chatHistory.scrollHeight; if (index <= message.length) setTimeout(write, 16); else { const source = document.createElement('span'); source.className = 'chat-source'; source.textContent = '참고: 제공된 입학전형 안내문'; bubble.append(source); } }; write(); };
+    const answerChat = (question) => { addChatBubble('user', question); const typing = document.createElement('div'); typing.className = 'chat-bubble chat-bot chat-typing'; typing.innerHTML = '<i></i><i></i><i></i>'; chatHistory.append(typing); chatHistory.scrollTop = chatHistory.scrollHeight; const found = admissionFaq.find(([item]) => item === question); setTimeout(() => { typing.remove(); addChatBubble('bot', found ? found[1] : '제가 가진 안내문에서 해당 내용을 정확히 찾지 못했습니다. 학교의 최신 공식 모집요강에서 확인해 주세요.', true); }, 3000); };
+    chatChips.addEventListener('click', (event) => { if (event.target.matches('.chat-chip')) answerChat(event.target.textContent); });
+    document.querySelector('#chatForm').addEventListener('submit', (event) => { event.preventDefault(); const question = chatInput.value.trim(); if (!question) return; answerChat(question); chatInput.value = ''; });
+    setInterval(() => { chatSeconds--; chatCount.textContent = chatSeconds; if (chatSeconds <= 0) renderChatChips(); }, 1000); renderChatChips();
     const supabaseUrl = 'https://mdeqsecfgzmtweezomkp.supabase.co';
     const supabaseKey = 'sb_publishable_UP6xIQ4b34VdDp255k4pdA_Ph9WVJiD';
     const adminToken = sessionStorage.getItem('portfolioAdminToken');
@@ -350,4 +382,3 @@
   </script>
 </body>
 </html>
-
