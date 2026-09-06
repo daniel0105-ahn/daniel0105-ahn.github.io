@@ -98,6 +98,7 @@
     #saveStatus { flex-basis: 100%; color: #9b5b6c; font-size: .75rem; }
     footer { padding: 54px 0 10px; text-align: center; color: #b77285; font-size: .8rem; }
     @keyframes chatWave { 0%, 60%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-6px); opacity: 1; } }
+    .typing-active .section-heading, .typing-active article, .typing-active .question, .typing-active .quiz-date, .typing-active .score, .typing-active .wrong-note { animation: typeIn .42s ease both; } .typing-active article:nth-child(2), .typing-active .question:nth-child(2) { animation-delay: .08s; } .typing-active article:nth-child(3), .typing-active .question:nth-child(3) { animation-delay: .16s; } .typing-active article:nth-child(4), .typing-active .question:nth-child(4) { animation-delay: .24s; } .typing-active article:nth-child(5) { animation-delay: .32s; } .typing-active article:nth-child(6) { animation-delay: .40s; } .typing-active article:nth-child(7) { animation-delay: .48s; } .typing-active article:nth-child(8) { animation-delay: .56s; } @keyframes typeIn { from { opacity: 0; transform: translateY(8px); filter: blur(2px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     @media (max-width: 640px) { main { padding: 50px 18px; } .grid { grid-template-columns: 1fr; } article { min-height: 0; } }
   </style>
 </head>
@@ -160,6 +161,7 @@
         });
         button.setAttribute('aria-expanded', String(willOpen));
         selectedPanel.hidden = !willOpen;
+        if (willOpen) { selectedPanel.classList.remove('typing-active'); void selectedPanel.offsetWidth; selectedPanel.classList.add('typing-active'); }
       });
     });
     const questions = [
