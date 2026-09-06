@@ -115,31 +115,7 @@
       <form class="chat-form" id="chatForm"><input id="chatInput" placeholder="궁금한 것을 입력해 보세요" autocomplete="off"><button>보내기</button></form>
     </section>
     <div class="admin-toolbar admin-control"><strong>관리자 수정 모드</strong><button id="savePortfolio" type="button">저장하기</button><button id="exitAdmin" type="button">수정 종료</button><span id="saveStatus">수정한 뒤 저장하기를 눌러 주세요.</span></div>
-    <section class="accordion" aria-label="내 작품">
-      <button class="accordion-trigger" type="button" aria-expanded="false">내 작품</button>
-      <div class="accordion-panel" hidden>
-      <div class="section-heading"><span>MY WORKS</span><h2>내 작품</h2><p>내가 만든 프로젝트와 탐구 결과를 자유롭게 기록해요.</p></div>
-      <div class="grid works" id="works">
-        <article class="work-card"><span class="num">WORK 01</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image admin-control">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload admin-control">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
-        <article class="work-card"><span class="num">WORK 02</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image admin-control">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload admin-control">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p></article>
-      </div>
-      <button class="add-work admin-control" id="addWork" type="button">+ 작품 칸 추가하기</button>
-      </div>
-    </section>
-    <section class="accordion pledge" aria-label="앞으로의 다짐">
-      <button class="accordion-trigger" type="button" aria-expanded="false">앞으로의 다짐</button>
-      <div class="accordion-panel" hidden>
-      <div class="section-heading"><span>MY PROMISE</span><h2>앞으로의 다짐</h2><p>과학고에서 배우고 실천하고 싶은 것들입니다.</p></div>
-      <div class="grid">
-      <article><span class="num">01</span><h2>기초 학습 다지기</h2><p>수학과 과학의 핵심 개념을 다시 정리해 보세요. 공식 암기보다 ‘왜 그런가’를 설명하는 연습이 앞으로의 탐구에 큰 힘이 됩니다.</p></article>
-      <article><span class="num">02</span><h2>관심 분야 찾기</h2><p>물리·화학·생명과학·지구과학 중 마음이 가는 주제를 골라 책, 영상, 실험으로 가볍게 만나 보세요. 정답보다 호기심이 출발점입니다.</p></article>
-      <article><span class="num">03</span><h2>탐구 기록 습관</h2><p>궁금한 점, 가설, 관찰 결과를 노트에 남겨 보세요. 작은 질문 하나도 훌륭한 연구의 씨앗이 될 수 있습니다.</p></article>
-      <article><span class="num">04</span><h2>함께 배우는 태도</h2><p>과학고에서는 친구와 의견을 나누고 협력하는 일이 많습니다. 내 생각을 분명히 말하고, 다른 관점도 열린 마음으로 들어 보세요.</p></article>
-      <article><span class="num">05</span><h2>생활 리듬 만들기</h2><p>새로운 환경에서도 꾸준히 배우려면 수면, 운동, 휴식의 균형이 필요합니다. 나에게 맞는 공부 루틴을 미리 찾아 두세요.</p></article>
-      <article><span class="num">06</span><h2>나만의 목표 세우기</h2><p>‘무엇을 잘하고 싶은지’, ‘어떤 문제를 해결하고 싶은지’를 한 문장으로 적어 보세요. 목표는 바뀌어도 괜찮습니다. 방향을 찾는 과정이 중요합니다.</p></article>
-      </div>
-      </div>
-    </section>
+        <section class="accordion pledge" aria-label="앞으로의 다짐"><button class="accordion-trigger" type="button" aria-expanded="false">앞으로의 다짐</button><div class="accordion-panel" hidden><div class="section-heading"><span>MY PROMISE</span><h2>앞으로의 다짐</h2><p>과학고에서의 배움을 나만의 성장으로 이어 가기 위한 구체적인 약속입니다.</p></div><div class="grid"><article><span class="num">01</span><h2>개념을 ‘이해’로 바꾸기</h2><p>공식을 외우는 데서 멈추지 않고, 왜 그런 원리가 생기는지 내 말로 설명하겠습니다. 한 단원마다 핵심 질문을 만들고 스스로 답해 보겠습니다.</p></article><article><span class="num">02</span><h2>매주 한 가지 질문 기록하기</h2><p>수업과 일상에서 생긴 궁금증을 탐구 노트에 남기겠습니다. 질문·가설·확인 방법·결과를 차례로 적겠습니다.</p></article><article><span class="num">03</span><h2>실험을 정확하고 안전하게</h2><p>실험 전에는 변인과 절차를 정리하고, 뒤에는 관찰값과 오차의 원인을 기록하겠습니다. 안전수칙도 철저히 지키겠습니다.</p></article><article><span class="num">04</span><h2>데이터로 생각하기</h2><p>표와 그래프로 근거를 확인하겠습니다. 예상과 다른 결과도 실패가 아닌 새로운 질문으로 이어 가겠습니다.</p></article><article><span class="num">05</span><h2>함께 배우고 분명히 나누기</h2><p>모둠 활동의 역할을 책임 있게 수행하고, 내 생각은 근거와 함께 전달하겠습니다. 다른 의견도 끝까지 듣겠습니다.</p></article><article><span class="num">06</span><h2>읽고 연결하는 힘 기르기</h2><p>관심 분야의 책·기사·강연을 꾸준히 읽고, 배운 내용을 생활 속 현상에 연결해 보겠습니다.</p></article><article><span class="num">07</span><h2>실패를 다음 시도의 재료로</h2><p>막힌 이유를 기록하고 도움을 구하거나 방법을 바꾸어 한 번 더 도전하겠습니다.</p></article><article><span class="num">08</span><h2>꾸준히 성장하는 생활 만들기</h2><p>수면과 운동, 휴식의 균형을 지키고 매주 배운 점과 다음 목표를 돌아보겠습니다.</p></article></div></div></section>
     <section class="accordion quiz" aria-label="오늘의 퀴즈">
       <button class="accordion-trigger" type="button" aria-expanded="false">오늘의 퀴즈</button>
       <div class="accordion-panel" hidden>
@@ -152,26 +128,6 @@
         <p>틀린 문제의 정답과 해설이 여기에 쌓여요.</p>
         <ul class="wrong-list" id="wrongList"></ul>
       </aside>
-      </div>
-    </section>
-    <section class="accordion timetable" aria-label="시간표">
-      <button class="accordion-trigger" type="button" aria-expanded="false">시간표</button>
-      <div class="accordion-panel" hidden>
-      <div class="section-heading"><span>MY TIMETABLE</span><h2>시간표</h2><p>수업 칸을 눌러 과목이나 활동을 직접 입력해 보세요.</p></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>교시</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr></thead>
-          <tbody>
-            <tr><td>1교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
-            <tr><td>2교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
-            <tr><td>3교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
-            <tr><td>4교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
-            <tr><td>5교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
-            <tr><td>6교시</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td><td contenteditable="true">클릭하여 입력</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <button class="reset-table admin-control" id="resetTable" type="button">시간표 비우기</button>
       </div>
     </section>
     <footer>호기심을 품고, 즐겁게 탐구해요 ✦</footer>
@@ -229,17 +185,6 @@
       ['과학 탐구에서 결과가 예상과 달라도 중요한 이유는?', ['새로운 질문과 원인을 찾을 수 있어서', '실험을 멈춰야 해서', '기록할 필요가 없어서', '가설은 언제나 맞아서'], 0, '예상 밖의 결과는 오차 원인과 새로운 가설을 찾는 좋은 단서입니다.']
     ];
     const today = new Date();
-    const timetableCells = [...document.querySelectorAll('td[contenteditable="true"]')];
-    const timetableKey = 'science-high-school-timetable';
-    let savedTimetable = [];
-    try { savedTimetable = JSON.parse(localStorage.getItem(timetableKey)) || []; } catch { savedTimetable = []; }
-    if (savedTimetable.length === timetableCells.length) timetableCells.forEach((cell, index) => { cell.textContent = savedTimetable[index]; });
-    const saveTimetable = () => localStorage.setItem(timetableKey, JSON.stringify(timetableCells.map((cell) => cell.textContent.trim())));
-    timetableCells.forEach((cell) => cell.addEventListener('input', saveTimetable));
-    document.querySelector('#resetTable').addEventListener('click', () => {
-      timetableCells.forEach((cell) => { cell.textContent = ''; });
-      saveTimetable();
-    });
     const dayKey = Math.floor(new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime() / 86400000);
     const random = (() => { let seed = dayKey; return () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296); })();
     const shuffle = (items) => [...items].sort(() => random() - .5);
@@ -298,87 +243,6 @@
     });
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     setTimeout(() => location.reload(), tomorrow - today + 1000);
-    const works = document.querySelector('#works');
-    const disableEditing = () => document.querySelectorAll('[contenteditable="true"]').forEach((element) => element.removeAttribute('contenteditable'));
-    const cloudHeaders = (write = false) => ({ apikey: supabaseKey, ...(write ? { Authorization: `Bearer ${adminToken}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' } : {}) });
-    const restoreCloud = async () => {
-      try {
-        const response = await fetch(`${supabaseUrl}/rest/v1/portfolio_state?id=eq.main&select=data`, { headers: cloudHeaders() });
-        const [row] = await response.json(); const data = row?.data;
-        if (data?.works) works.innerHTML = data.works;
-        if (data?.timetable) data.timetable.forEach((text, index) => { if (timetableCells[index]) timetableCells[index].textContent = text; });
-        if (!adminMode) disableEditing();
-      } catch { /* 네트워크 연결이 없을 때는 기본 화면을 표시합니다. */ }
-    };
-    restoreCloud();
-    const portfolioDraftKey = 'science-high-school-portfolio-draft';
-    if (adminMode) {
-      try {
-        const draft = JSON.parse(localStorage.getItem(portfolioDraftKey));
-        if (draft?.works) works.innerHTML = draft.works;
-      } catch { /* 저장된 초안이 없거나 읽을 수 없습니다. */ }
-      document.querySelector('#savePortfolio').addEventListener('click', async () => {
-        const data = { works: works.innerHTML, timetable: timetableCells.map((cell) => cell.textContent.trim()) };
-        const response = await fetch(`${supabaseUrl}/rest/v1/portfolio_state?id=eq.main`, { method: 'PATCH', headers: cloudHeaders(true), body: JSON.stringify({ data, updated_at: new Date().toISOString() }) });
-        document.querySelector('#saveStatus').textContent = response.ok ? '저장했습니다. 공개 홈페이지에 반영됩니다.' : '저장에 실패했습니다. 다시 로그인해 주세요.';
-      });
-      document.querySelector('#exitAdmin').addEventListener('click', () => {
-        sessionStorage.removeItem('portfolioAdminToken');
-        location.reload();
-      });
-    }
-    const imagePlaceholder = (label) => {
-      label.innerHTML = '그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden>';
-    };
-    const imageUpload = (input) => {
-      const file = input.files[0];
-      if (!file) return;
-      const image = document.createElement('img');
-      image.src = URL.createObjectURL(file);
-      image.alt = '업로드한 작품 이미지';
-      const remove = document.createElement('button');
-      remove.className = 'remove-image';
-      remove.type = 'button';
-      remove.textContent = '그림 삭제';
-      input.parentElement.replaceChildren(image, input, remove);
-    };
-    const addFiles = (input) => {
-      const list = input.closest('.work-card').querySelector('.file-list');
-      [...input.files].forEach((file) => {
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(file);
-        link.download = file.name;
-        link.textContent = `첨부 파일: ${file.name}`;
-        link.title = file.name;
-        const remove = document.createElement('button');
-        remove.className = 'remove-file';
-        remove.type = 'button';
-        remove.textContent = '삭제';
-        item.append(link, remove);
-        list.appendChild(item);
-      });
-      input.value = '';
-    };
-    document.addEventListener('change', (event) => {
-      if (event.target.matches('.work-image input[type="file"]')) imageUpload(event.target);
-      if (event.target.matches('.project-file')) addFiles(event.target);
-    });
-    document.addEventListener('click', (event) => {
-      if (event.target.matches('.remove-image')) {
-        event.preventDefault();
-        imagePlaceholder(event.target.closest('.work-image'));
-      }
-      if (event.target.matches('.remove-file')) event.target.closest('li').remove();
-    });
-    document.querySelector('#addWork').addEventListener('click', () => {
-      const number = String(works.children.length + 1).padStart(2, '0');
-      const card = document.createElement('article');
-      card.className = 'work-card';
-      card.innerHTML = `<span class="num">WORK ${number}</span><h2 contenteditable="true">작품 제목을 입력하세요</h2><label class="work-image">그림을 업로드하려면 여기를 눌러 주세요<input type="file" accept="image/*" hidden></label><label class="file-upload">+ 작품 파일 첨부하기<input class="project-file" type="file" multiple hidden></label><ul class="file-list"></ul><p contenteditable="true">이곳을 눌러 작품을 만들게 된 계기, 사용한 방법, 배운 점을 적어 보세요.</p>`;
-      works.appendChild(card);
-      card.querySelector('h2').focus();
-    });
   </script>
 </body>
 </html>
