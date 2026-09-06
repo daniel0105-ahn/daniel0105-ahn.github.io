@@ -151,6 +151,7 @@
     const adminMode = Boolean(adminToken);
     if (adminMode) document.body.classList.add('admin-mode');
     else document.querySelectorAll('[contenteditable="true"]').forEach((element) => element.removeAttribute('contenteditable'));
+    const runTypingEffect = (panel) => { const run = String((Number(panel.dataset.typingRun) || 0) + 1); panel.dataset.typingRun = run; const targets = [...panel.querySelectorAll('.section-heading span, .section-heading h2, .section-heading p, article .num, article h2, article p, .quiz-date, .question h3, .score, .wrong-note h3, .wrong-note > p')]; targets.forEach((element, order) => { const text = element.dataset.typingText || element.textContent; element.dataset.typingText = text; element.textContent = ''; window.setTimeout(() => { let index = 0; const type = () => { if (panel.dataset.typingRun !== run) return; element.textContent = text.slice(0, index++); if (index <= text.length) window.setTimeout(type, 14); }; type(); }, order * 95); }); };
     document.querySelectorAll('.accordion-trigger').forEach((button) => {
       button.addEventListener('click', () => {
         const selectedPanel = button.nextElementSibling;
@@ -161,7 +162,7 @@
         });
         button.setAttribute('aria-expanded', String(willOpen));
         selectedPanel.hidden = !willOpen;
-        if (willOpen) { selectedPanel.classList.remove('typing-active'); void selectedPanel.offsetWidth; selectedPanel.classList.add('typing-active'); }
+        if (willOpen) { selectedPanel.classList.remove('typing-active'); void selectedPanel.offsetWidth; selectedPanel.classList.add('typing-active'); runTypingEffect(selectedPanel); }
       });
     });
     const questions = [
